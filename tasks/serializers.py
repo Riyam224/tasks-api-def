@@ -1,0 +1,21 @@
+# from rest_framework import serializers
+# from .models import Task
+
+
+# class TaskSerializer(serializers.ModelSerializer):
+#    class Meta:
+#       model = Task
+#       fields = '__all__'
+
+
+# tasks/serializers.py
+# tasks/serializers.py
+from rest_framework import serializers
+from .models import Task
+
+
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = "__all__"
+        read_only_fields = ["slug", "created_at", "updated_at", "transcript"]

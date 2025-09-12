@@ -1,0 +1,20 @@
+# Secrets
+# .gitignore
+# OS files
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+venv/
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+
+# Secrets
+.env
