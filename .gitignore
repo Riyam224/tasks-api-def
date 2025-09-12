@@ -1,6 +1,4 @@
-# Secrets
-# .gitignore
-# OS files
+# OS
 .DS_Store
 
 # Python
@@ -8,11 +6,9 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.sqlite3
 venv/
 
 # Django
-db.sqlite3
 media/
 staticfiles/
 
