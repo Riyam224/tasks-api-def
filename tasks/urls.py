@@ -3,6 +3,7 @@ from rest_framework.routers import DefaultRouter
 from .views import TaskViewSet
 from .views_ai import AudioUploadView
 
+
 router = DefaultRouter()
 router.register(r"tasks", TaskViewSet)
 

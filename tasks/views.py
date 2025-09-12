@@ -1,6 +1,11 @@
+from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Task
 from .serializers import TaskSerializer
+
+
+def home(request):
+    return render(request, "home.html")
 
 
 class TaskViewSet(viewsets.ModelViewSet):

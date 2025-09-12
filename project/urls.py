@@ -21,9 +21,13 @@ from django.urls import path, include
 # project/urls.py
 from django.conf import settings
 from django.conf.urls.static import static
+from tasks.views import home
 
-
-urlpatterns = [path("admin/", admin.site.urls), path("api/", include("tasks.urls"))]
+urlpatterns = [
+    path("", home, name="home"),
+    path("admin/", admin.site.urls),
+    path("api/", include("tasks.urls")),
+]
 
 # 👇 Add this at the bottom
 if settings.DEBUG:
