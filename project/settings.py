@@ -37,12 +37,25 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Third-party
+    "drf_spectacular",
     "rest_framework",
     "corsheaders",
     # Local apps
     "tasks",
 ]
 
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "🚀 Tasks API",
+    "DESCRIPTION": "A modern, simple API for managing tasks",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
 # ========================
 # Middleware
 # ========================
