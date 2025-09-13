@@ -8,12 +8,17 @@ from drf_spectacular.views import (
 from django.conf import settings
 from django.conf.urls.static import static
 from tasks.views import home
+from django.shortcuts import redirect
+
+
+def root_redirect(request):
+    return redirect("/swagger/")  # use direct URL, not named route
+
 
 urlpatterns = [
     path("", home, name="home"),
     path("admin/", admin.site.urls),
     path("api/", include("tasks.urls")),
-    # API schema
     # Schema & Docs
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
