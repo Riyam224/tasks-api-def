@@ -15,4 +15,5 @@ class TaskAdmin(admin.ModelAdmin):
         "slug",
         "created_at",
         "updated_at",
+     
     )  # slug is readonly

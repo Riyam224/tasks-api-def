@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
 # Installed apps
 # ========================
 INSTALLED_APPS = [
+    "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -39,7 +40,6 @@ INSTALLED_APPS = [
     # Third-party
     "drf_spectacular",
     "rest_framework",
-    "corsheaders",
     # Local apps
     "tasks",
 ]
@@ -53,8 +53,8 @@ REST_FRAMEWORK = {
 # ========================
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",  # ✅ MUST be at the top
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -152,12 +152,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # CORS
 # ========================
 # In production, restrict to your frontend domain(s)
-if DEBUG:
-    CORS_ALLOW_ALL_ORIGINS = True
-else:
-    CORS_ALLOWED_ORIGINS = [
-        "https://your-frontend-domain.com",  # e.g. React/Flutter Web app
-    ]
+CORS_ALLOW_ALL_ORIGINS = True  # ✅ for now (testing)
 
 # ========================
 # API Keys
