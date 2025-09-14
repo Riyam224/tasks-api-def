@@ -1,39 +1,23 @@
-# todo ______________ v3
-
-# tasks/models.py
+from django.utils import timezone
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
 
 
 class Task(models.Model):
-    # ── Main fields ──────────────────────────────────────────
-    title = models.CharField(
-        max_length=200,
-        blank=True,  # <-- allows empty title in forms
-        null=True,  # <-- allows NULL in DB
-        help_text="Short label for the task, e.g. Studying, Meditating",
-    )
-    content = models.TextField(
-        null=True, blank=True, help_text="Detailed description or context of the task"
-    )
-    type = models.CharField(max_length=100, null=True, blank=True)  # optional category
-    time = models.TimeField(null=True, blank=True)
-    date = models.DateField(null=True, blank=True)
+    title = models.CharField(max_length=255, default="Untitled Task")
+    type = models.CharField(max_length=100, blank=True, null=True)
+    time = models.CharField(max_length=10, default="00:00")
+    date = models.DateField(default=timezone.now)
     tasks = models.JSONField(default=list, blank=True)
 
-    # ── Voice support ────────────────────────────────────────
-    audio_file = models.FileField(
-        upload_to="voice_notes/",
-        null=True,
-        blank=True,
-        help_text="Optional audio file if added via voice",
-    )
-    transcript = models.TextField(
-        null=True, blank=True, help_text="AI-generated transcript from audio"
-    )
+    color = models.CharField(max_length=20, default="#FFFFFF")
+    cardColor = models.CharField(max_length=20, default="4294967295")  # white
+    titleColor = models.CharField(max_length=20, default="4278190080")  # black
 
-    # ── System fields ────────────────────────────────────────
+    audio_file = models.FileField(upload_to="voices/", null=True, blank=True)
+
+    # ── System fields ─────────────────────────────
     slug = models.SlugField(unique=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -54,4 +38,4 @@ class Task(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.title
+        return self.title or "Unnamed Task"
